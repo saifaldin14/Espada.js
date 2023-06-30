@@ -1,0 +1,9 @@
+{
+  "name": "veritas",
+  "version": "1.0.0",
+  "main": "dist/veritas.js",
+  "files": [
+    "dist/veritas.js"
+  ],
+  "author": "Saif Al-Din Ali"
+}
