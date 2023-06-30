@@ -1,14 +1,10 @@
 {
-  "name": "veritas-project",
+  "name": "espada-project",
   "version": "1.0.0",
-  "description": "Veritas.js a frontend framework similar to React to create and publish web applications",
+  "description": "Espada.js a frontend framework similar to React to create and publish web applications",
   "private": true,
   "scripts": {
     "serve:examples": "npx http-server . -o ./examples/"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/saifaldin14/Veritas.git"
   },
   "workspaces": [
     "packages/runtime",
@@ -17,9 +13,5 @@
   ],
   "keywords": [],
   "author": "Saif Al-Din Ali",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/saifaldin14/Veritas/issues"
-  },
-  "homepage": "https://github.com/saifaldin14/Veritas#readme"
+  "license": "ISC"
 }

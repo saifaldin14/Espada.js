@@ -1,9 +1,9 @@
 {
   "name": "veritas-compiler",
   "version": "1.0.0",
-  "main": "dist/veritas.ts",
+  "main": "dist/espada.ts",
   "files": [
-    "dist/veritas.ts"
+    "dist/espada.ts"
   ],
   "scripts": {
     "prepack": "npm run build",

@@ -5,7 +5,7 @@ export default {
   plugins: [cleanup()],
   output: [
     {
-      file: "dist/veritas.ts",
+      file: "dist/espada.ts",
       format: "esm",
       plugins: [filesize()],
     },
