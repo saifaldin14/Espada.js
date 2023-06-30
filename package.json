@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Veritas.js a frontend framework similar to React to create and publish web applications",
   "main": "index.js",
+  "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
