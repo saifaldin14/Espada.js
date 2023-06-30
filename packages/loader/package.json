@@ -1,0 +1,25 @@
+{
+  "name": "veritas-loader",
+  "version": "1.0.0",
+  "main": "dist/veritas.ts",
+  "files": [
+    "dist/veritas.ts"
+  ],
+  "scripts": {
+    "prepack": "npm run build",
+    "build": "rollup -c",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
+    "test": "vitest",
+    "test:run": "vitest run"
+  },
+  "author": "Saif Al-Din Ali",
+  "devDependencies": {
+    "eslint": "^8.43.0",
+    "jsdom": "^22.1.0",
+    "rollup": "^3.26.0",
+    "rollup-plugin-cleanup": "^3.2.1",
+    "rollup-plugin-filesize": "^10.0.0",
+    "vitest": "^0.32.2"
+  }
+}
