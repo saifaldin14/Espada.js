@@ -44,7 +44,7 @@ const removeTextNode = (vDOM) => {
 
 /**
  * Destroys an HTMLElement node and removes its children
- * as well as its Event handlers
+ * recursively as well as its Event handlers
  * @param vDOM
  */
 const removeElementNode = (vDOM) => {
@@ -61,7 +61,7 @@ const removeElementNode = (vDOM) => {
 
 /**
  * Destroys a Fragment
- * Loops through its children deletes them separately
+ * Recursively loops through its children deletes them separately
  * @param vDOM
  */
 const removeFragmentNodes = (vDOM) => {
