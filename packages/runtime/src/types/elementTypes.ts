@@ -12,9 +12,9 @@ type ElementFunctionType = {
 };
 
 export type ElementNodePropsType = {
-  on: ElementFunctionType;
-  class: string | string[];
-  style: PropsStyleType;
+  on?: ElementFunctionType;
+  class?: string | string[];
+  style?: PropsStyleType;
 };
 
 export type ElementNodeType = {
