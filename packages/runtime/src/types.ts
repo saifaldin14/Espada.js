@@ -1,9 +1,4 @@
-export type DomNodeType = {
-  TEXT: string;
-  ELEMENT: string;
-  FRAGMENT: string;
-};
-
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export type HyperTextPropsType = {
   type?: string;
   class?: string;
@@ -36,4 +31,24 @@ export type TextNodeType = {
 export type FragmentNodeType = {
   type: string;
   children: unknown;
+};
+
+export type vTextNode = {
+  type: string;
+  value: string;
+  el: Text;
+};
+
+export type vElementNode = {
+  type: string;
+  tag: string;
+  props: HyperTextPropsType;
+  children: any;
+  el: HTMLElement;
+};
+
+export type vFragmentNode = {
+  type: string;
+  children: any;
+  el: DocumentFragment;
 };
