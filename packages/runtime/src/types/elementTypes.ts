@@ -29,6 +29,6 @@ export type vElementNode = {
   tag: string;
   props: ElementNodePropsType;
   children: VNode[];
-  el: HTMLElement;
-  listeners: ElementFunctionType;
+  el?: HTMLElement;
+  listeners?: ElementFunctionType;
 };
