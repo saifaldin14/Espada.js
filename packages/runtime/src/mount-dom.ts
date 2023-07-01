@@ -29,6 +29,11 @@ export const mountDOM = (vDOM, parentEl) => {
   }
 };
 
+/**
+ * Creates a Text node in the DOM
+ * @param vDOM the virtual DOM node
+ * @param parentEl
+ */
 const createTextNode = (vDOM: vTextNode, parentEl) => {
   const { value } = vDOM;
 
@@ -38,6 +43,11 @@ const createTextNode = (vDOM: vTextNode, parentEl) => {
   parentEl.append(textNode);
 };
 
+/**
+ * Creates a Fragment from the Virtual DOM representation
+ * @param vDOM the virtual DOM fragment
+ * @param parentEl
+ */
 const createFragmentNodes = (vDOM: vFragmentNode, parentEl) => {
   const { children } = vDOM;
   vDOM.el = parentEl;
@@ -45,6 +55,11 @@ const createFragmentNodes = (vDOM: vFragmentNode, parentEl) => {
   children.forEach((child) => mountDOM(child, parentEl));
 };
 
+/**
+ * Creates an HTMLElement from the Virtual DOM representation
+ * @param vDOM the virtual DOM element node
+ * @param parentEl
+ */
 const createElementNode = (vDOM: vElementNode, parentEl) => {
   const { tag, props, children } = vDOM;
 
@@ -56,9 +71,15 @@ const createElementNode = (vDOM: vElementNode, parentEl) => {
   parentEl.append(element);
 };
 
-function addProps(el, props, vDOM) {
+/**
+ * Attaches props to the Element Node
+ * @param el
+ * @param props
+ * @param vDOM
+ */
+const addProps = (el, props, vDOM) => {
   const { on: events, ...attrs } = props;
 
   vDOM.listeners = addEventListeners(events, el);
   setAttributes(el, attrs);
-}
+};
