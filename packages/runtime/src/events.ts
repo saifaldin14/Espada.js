@@ -28,6 +28,12 @@ export const addEventListeners = (listeners = {}, el) => {
   return addedListeners;
 };
 
+/**
+ * Given the names of the event listeners,
+ * removes them from the DOM Element
+ * @param listeners
+ * @param el
+ */
 export const removeEventListeners = (listeners = {}, el) => {
   Object.entries(listeners).forEach(([eventName, handler]) => {
     el.removeEventListener(eventName, handler);
