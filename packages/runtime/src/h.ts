@@ -31,7 +31,7 @@ export const DOM_TYPES: DomNodeType = {
 export const h = (
   tag: string,
   props: HyperTextPropsType = {},
-  children: HyperTextChildNodeType[] = []
+  children: unknown[] = []
 ): ElementNodeType => {
   return {
     type: DOM_TYPES.ELEMENT,
@@ -81,15 +81,10 @@ export const hFragment = (vNodes): FragmentNodeType => {
  * @returns fragment node with all of the paragraphs
  */
 export const lipsum = (num: number) => {
-  const vNodes: TextNodeType[] = [];
   const paragraph =
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
-  for (let i = 0; i < num; i++) {
-    const hNode = hString(paragraph);
-    vNodes.push(hNode);
-  }
 
-  return hFragment(vNodes);
+  return hFragment(Array(num).fill(h("p", {}, [paragraph])));
 };
 
 type LevelType = "info" | "warning" | "error";
@@ -107,11 +102,5 @@ export const MessageComponent = (
   message: string
 ): ElementNodeType => {
   const cssClass = `message--${level}`;
-  const textNode = hString(message);
-  return {
-    type: "element",
-    tag: "div",
-    props: { class: cssClass },
-    children: [textNode],
-  };
+  return h("div", { class: cssClass }, [message]);
 };
