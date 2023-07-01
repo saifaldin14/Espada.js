@@ -8,6 +8,6 @@ export type FragmentNodeType = {
 export type vFragmentNode = {
   type: string;
   children: VNode[];
-  el: DocumentFragment;
+  el?: DocumentFragment;
   parentFragment: vFragmentNode;
 };
