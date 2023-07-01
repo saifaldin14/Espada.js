@@ -1,25 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-export type HyperTextPropsType = {
-  type?: string;
-  class?: string;
-  action?: string;
-};
-
-export type HyperTextChildPropsType = {
-  type?: string;
-  name?: string;
-};
-
 export type HyperTextChildNodeType = {
   type?: string;
   tag?: string;
-  props?: HyperTextChildPropsType;
+  props?: any;
 };
 
 export type ElementNodeType = {
   type: string;
   tag: string;
-  props: HyperTextPropsType;
+  props: any;
   children: HyperTextChildNodeType[];
 };
 
@@ -42,7 +31,7 @@ export type vTextNode = {
 export type vElementNode = {
   type: string;
   tag: string;
-  props: HyperTextPropsType;
+  props: any;
   children: any;
   el: HTMLElement;
 };
