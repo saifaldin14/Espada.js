@@ -1,8 +1,10 @@
 import {
   DomNodeType,
   HyperTextChildNodeType,
-  HyperTextNodeType,
+  ElementNodeType,
   HyperTextPropsType,
+  TextNodeType,
+  FragmentNodeType,
 } from "./types";
 import { withoutNulls } from "./utils/arrays";
 
@@ -30,7 +32,7 @@ export const h = (
   tag: string,
   props: HyperTextPropsType = {},
   children: HyperTextChildNodeType[] = []
-): HyperTextNodeType => {
+): ElementNodeType => {
   return {
     type: DOM_TYPES.ELEMENT,
     tag,
@@ -40,11 +42,9 @@ export const h = (
 };
 
 /**
- * Filters NULL nodes within the children
- * Used for conditional rendering where we don't want to render empty nodes
- * NULL nodes shouldn't be added to the DOM
- * @param children HyperTextChildNodeType[], the child nodes to evaluate
- * @returns a filtered array of child nodes
+ * Transforms strings into text virtual nodes
+ * @param children HyperTextChildNodeType[], list of child nodes
+ * @returns transformed array of child nodes with text virtual nodes
  */
 export const mapTextNodes = (children: HyperTextChildNodeType[]) => {
   return children.map((child) =>
@@ -52,11 +52,21 @@ export const mapTextNodes = (children: HyperTextChildNodeType[]) => {
   );
 };
 
-export const hString = (str: string) => {
-  return { type: DOM_TYPES.TEXT, value: str };
+/**
+ * Transforms text to text virtual nodes
+ * @param str string, text to transform
+ * @returns Text node
+ */
+export const hString = (val: string): TextNodeType => {
+  return { type: DOM_TYPES.TEXT, value: val };
 };
 
-export const hFragment = (vNodes) => {
+/**
+ * Creates fragment virtual nodes
+ * @param vNodes
+ * @returns
+ */
+export const hFragment = (vNodes): FragmentNodeType => {
   return {
     type: DOM_TYPES.FRAGMENT,
     children: mapTextNodes(withoutNulls(vNodes)),
