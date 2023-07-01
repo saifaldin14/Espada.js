@@ -9,3 +9,10 @@ export const DOM_TYPES = {
   ELEMENT: "element",
   FRAGMENT: "fragment",
 };
+
+export const ARRAY_DIFF_OP = {
+  ADD: "add",
+  REMOVE: "remove",
+  MOVE: "move",
+  NOOP: "noop",
+};
