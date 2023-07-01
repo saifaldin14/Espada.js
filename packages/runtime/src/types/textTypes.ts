@@ -6,5 +6,5 @@ export type TextNodeType = {
 export type vTextNode = {
   type: string;
   value: string;
-  el: Text;
+  el?: Text;
 };
