@@ -72,3 +72,22 @@ export const hFragment = (vNodes): FragmentNodeType => {
     children: mapTextNodes(withoutNulls(vNodes)),
   };
 };
+
+/**
+ * Takes in a number, and returns a virtual DOM
+ * consisting of a fragment with as many paragraphs
+ * as the number passed
+ * @param num string, Number of paragraphs
+ * @returns fragment node with all of the paragraphs
+ */
+export const lipsum = (num: number) => {
+  const vNodes: TextNodeType[] = [];
+  const paragraph =
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.";
+  for (let i = 0; i < num; i++) {
+    const hNode = hString(paragraph);
+    vNodes.push(hNode);
+  }
+
+  return hFragment(vNodes);
+};
