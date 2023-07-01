@@ -6,9 +6,9 @@ type PropsStyleType = {
   prop2: string;
 };
 
-type ElementFunctionType = {
-  value: string;
-  func: Function;
+export type ElementFunctionType = {
+  value?: string;
+  func?: Function;
 };
 
 export type ElementNodePropsType = {
