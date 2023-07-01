@@ -4,13 +4,13 @@ import {
   removeStyle,
   setAttribute,
   setStyle,
-} from "../attributes";
-import { ARRAY_DIFF_OP, DOM_TYPES } from "../consts";
+} from "../node-properties/attributes";
+import { ARRAY_DIFF_OP, DOM_TYPES } from "../utils/consts";
 import { destroyDOM } from "./destroy-dom";
-import { addEventListener } from "../events";
-import { extractChildren } from "../h";
+import { addEventListener } from "../node-properties/events";
+import { extractChildren } from "./h";
 import { mountDOM } from "./mount-dom";
-import { areNodesEqual } from "../nodes-equal";
+import { areNodesEqual } from "../node-properties/nodes-equal";
 import { VNode } from "../types/common";
 import { vElementNode } from "../types/elementTypes";
 import { vFragmentNode } from "../types/fragmentTypes";

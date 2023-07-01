@@ -1,5 +1,5 @@
-import { removeEventListeners } from "../events";
-import { DOM_TYPES } from "../consts";
+import { removeEventListeners } from "../node-properties/events";
+import { DOM_TYPES } from "../utils/consts";
 import { VNode } from "../types/common";
 import { assert } from "../utils/assert";
 import { vTextNode } from "../types/textTypes";

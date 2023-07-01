@@ -1,5 +1,5 @@
 import { destroyDOM } from "./virtual-dom/destroy-dom";
-import { Dispatcher } from "./dispatcher";
+import { Dispatcher } from "./node-properties/dispatcher";
 import { mountDOM } from "./virtual-dom/mount-dom";
 import { patchDOM } from "./virtual-dom/patch-dom";
 import { VNode } from "./types/common";

@@ -1,6 +1,6 @@
-import { DOM_TYPES } from "../consts";
-import { setAttributes } from "../attributes";
-import { addEventListeners } from "../events";
+import { DOM_TYPES } from "../utils/consts";
+import { setAttributes } from "../node-properties/attributes";
+import { addEventListeners } from "../node-properties/events";
 import { VNode } from "../types/common";
 import { ElementNodePropsType, vElementNode } from "../types/elementTypes";
 import { vTextNode } from "../types/textTypes";
