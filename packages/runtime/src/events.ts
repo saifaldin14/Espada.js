@@ -1,4 +1,5 @@
 import { EventHandlerType } from "./types/common";
+import { ElementFunctionType } from "./types/elementTypes";
 
 /**
  * Adds an event listener to an event target and returns the listener.
@@ -28,8 +29,8 @@ export const addEventListener = (
 export const addEventListeners = (
   listeners: object = {},
   el: EventTarget
-): object => {
-  const addedListeners = {};
+): ElementFunctionType => {
+  const addedListeners: ElementFunctionType = {};
 
   Object.entries(listeners).forEach(([eventName, handler]) => {
     const listener = addEventListener(eventName, handler, el);
