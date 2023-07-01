@@ -6,10 +6,10 @@
  * @param el
  * @returns
  */
-export function addEventListener(eventName, handler, el) {
+export const addEventListener = (eventName, handler, el) => {
   el.addEventListener(eventName, handler);
   return handler;
-}
+};
 
 /**
  * Adds multiple event listeners in the form of an object to an element node
@@ -17,7 +17,7 @@ export function addEventListener(eventName, handler, el) {
  * @param el
  * @returns
  */
-export function addEventListeners(listeners = {}, el) {
+export const addEventListeners = (listeners = {}, el) => {
   const addedListeners = {};
 
   Object.entries(listeners).forEach(([eventName, handler]) => {
@@ -26,4 +26,4 @@ export function addEventListeners(listeners = {}, el) {
   });
 
   return addedListeners;
-}
+};
