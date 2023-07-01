@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { ARRAY_DIFF_OP } from "../consts";
-import { ArraysDiffSequenceOp } from "../types/common";
 
 /**
  * If the given value is an array, it returns it. Otherwise, it returns an array
