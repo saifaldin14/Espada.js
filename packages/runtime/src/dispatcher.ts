@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-empty-function */
-import { VoidFunctionType } from "./types";
+import { VoidFunctionType } from "./types/common";
 
 export class Dispatcher {
   #subs = new Map(); // Store the registered handlers by event name
