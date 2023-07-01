@@ -7,8 +7,8 @@ type PropsStyleType = {
 };
 
 type ElementFunctionType = {
-  prop1: string;
-  prop2: Function;
+  value: string;
+  func: Function;
 };
 
 export type ElementNodePropsType = {
