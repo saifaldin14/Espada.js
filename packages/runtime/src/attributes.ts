@@ -24,7 +24,7 @@ export const setAttributes = (el: HTMLElement, attrs: ElementNodePropsType) => {
   }
 
   for (const [name, value] of Object.entries(otherAttrs)) {
-    setAttribute(el, name, value.value);
+    setAttribute(el, name, value.value ? value.value : "");
   }
 };
 
