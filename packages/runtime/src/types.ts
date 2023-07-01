@@ -20,9 +20,19 @@ export type HyperTextChildNodeType = {
   props?: HyperTextChildPropsType;
 };
 
-export type HyperTextNodeType = {
+export type ElementNodeType = {
   type: string;
   tag: string;
   props: HyperTextPropsType;
   children: HyperTextChildNodeType[];
+};
+
+export type TextNodeType = {
+  type: string;
+  value: string;
+};
+
+export type FragmentNodeType = {
+  type: string;
+  children: unknown;
 };
