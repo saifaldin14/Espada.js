@@ -9,5 +9,5 @@ export type vFragmentNode = {
   type: string;
   children: VNode[];
   el?: DocumentFragment;
-  parentFragment: vFragmentNode;
+  parentFragment?: vFragmentNode;
 };
