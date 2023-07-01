@@ -1,13 +1,16 @@
+import { ValueType } from "./types/common";
+import { ElementNodePropsType } from "./types/elementTypes";
+
 /**
- * Extracts the attributes that require special handling
- * (the style and class attributes) from the rest of the
- * attributes and then call the setStyle() and setClass()
- * functions to set those attributes, rest are passed to
- * setAttribute()
- * @param el
- * @param attrs
+ * Sets the attributes of an element.
+ *
+ * It doesn't remove attributes that are not present in the new attributes,
+ * except in the case of the `class` attribute.
+ *
+ * @param {HTMLElement} el target element
+ * @param {ElementNodePropsType} attrs attributes to set
  */
-export const setAttributes = (el, attrs) => {
+export const setAttributes = (el: HTMLElement, attrs: ElementNodePropsType) => {
   const { class: className, style, ...otherAttrs } = attrs;
 
   if (className) {
@@ -21,7 +24,7 @@ export const setAttributes = (el, attrs) => {
   }
 
   for (const [name, value] of Object.entries(otherAttrs)) {
-    setAttribute(el, name, value);
+    setAttribute(el, name, value.value);
   }
 };
 
@@ -66,29 +69,30 @@ export const removeStyle = (el, name) => {
 };
 
 /**
- * Handles setting the attributes for everything other than
- * classes and styles
- * @param el
- * @param name
- * @param value
+ * Sets the attribute on the element.
+ *
+ * @param {Element} el The element to add the attribute to
+ * @param {string} name The name of the attribute
+ * @param {ValueType} value The value of the attribute
  */
-export const setAttribute = (el, name, value) => {
+export const setAttribute = (el: Element, name: string, value: ValueType) => {
   if (value == null) {
     // Null value, remove it from the DOM
     removeAttribute(el, name);
   } else if (name.startsWith("data-")) {
-    el.setAttribute(name, value);
+    el.setAttribute(name, "" + value);
   } else {
     el[name] = value;
   }
 };
 
 /**
- * Removes the attribute from the DOM Element if the value is NULL
- * @param el
- * @param name
+ * Removes the attribute from the element.
+ *
+ * @param {Element} el the element where the attribute is set
+ * @param {string} name name of the attribute
  */
-export const removeAttribute = (el, name) => {
+export const removeAttribute = (el: Element, name: string): void => {
   el[name] = null;
   el.removeAttribute(name);
 };
