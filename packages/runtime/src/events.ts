@@ -27,3 +27,9 @@ export const addEventListeners = (listeners = {}, el) => {
 
   return addedListeners;
 };
+
+export const removeEventListeners = (listeners = {}, el) => {
+  Object.entries(listeners).forEach(([eventName, handler]) => {
+    el.removeEventListener(eventName, handler);
+  });
+};
