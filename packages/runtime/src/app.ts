@@ -1,7 +1,7 @@
-import { destroyDOM } from "./destroy-dom";
+import { destroyDOM } from "./virtual-dom/destroy-dom";
 import { Dispatcher } from "./dispatcher";
-import { mountDOM } from "./mount-dom";
-import { patchDOM } from "./patch-dom";
+import { mountDOM } from "./virtual-dom/mount-dom";
+import { patchDOM } from "./virtual-dom/patch-dom";
 import { VNode } from "./types/common";
 /**
  * Creates an application with the given top-level view, initial state and reducers.
