@@ -4,3 +4,4 @@ import { vTextNode } from "./textTypes";
 
 export type VNode = vTextNode | vElementNode | vFragmentNode;
 export type VoidFunctionType = () => void;
+export type ValueType = string | number | null;
