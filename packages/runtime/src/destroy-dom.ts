@@ -1,27 +1,36 @@
 import { removeEventListeners } from "./events";
 import { DOM_TYPES } from "./consts";
+import { VNode } from "./types/common";
+import { assert } from "./utils/assert";
+import { vTextNode } from "./types/textTypes";
+import { vElementNode } from "./types/elementTypes";
+import { vFragmentNode } from "./types/fragmentTypes";
 
 /**
- * Destroys the DOM Elements
- * Handles Text, Fragment and Element nodes and removes them
- * @param vDOM
+ * Unmounts the DOM nodes for a virtual DOM tree recursively.
+ *
+ * Removes all `el` references from the vDOM tree and removes all the event
+ * listeners from the DOM.
+ *
+ * @param {VNode} vDOM the virtual DOM node to destroy
  */
-export const destroyDOM = (vDOM) => {
-  const { type } = vDOM;
+export const destroyDOM = (vDOM: VNode) => {
+  const { type, el } = vDOM;
+  assert(!!el, "Can only destroy DOM nodes that have been mounted");
 
   switch (type) {
     case DOM_TYPES.TEXT: {
-      removeTextNode(vDOM);
+      removeTextNode(vDOM as vTextNode);
       break;
     }
 
     case DOM_TYPES.ELEMENT: {
-      removeElementNode(vDOM);
+      removeElementNode(vDOM as vElementNode);
       break;
     }
 
     case DOM_TYPES.FRAGMENT: {
-      removeFragmentNodes(vDOM);
+      removeFragmentNodes(vDOM as vFragmentNode);
       break;
     }
 
@@ -35,22 +44,22 @@ export const destroyDOM = (vDOM) => {
 
 /**
  * Destroys a Text node
- * @param vDOM
+ * @param {vTextNode} vDOM
  */
-const removeTextNode = (vDOM) => {
+const removeTextNode = (vDOM: vTextNode) => {
   const { el } = vDOM;
-  el.remove();
+  if (el) el.remove();
 };
 
 /**
  * Destroys an HTMLElement node and removes its children
  * recursively as well as its Event handlers
- * @param vDOM
+ * @param {vElementNode} vDOM
  */
-const removeElementNode = (vDOM) => {
+const removeElementNode = (vDOM: vElementNode) => {
   const { el, children, listeners } = vDOM;
 
-  el.remove();
+  if (el) el.remove();
   children.forEach(destroyDOM);
 
   if (listeners) {
@@ -62,9 +71,9 @@ const removeElementNode = (vDOM) => {
 /**
  * Destroys a Fragment
  * Recursively loops through its children deletes them separately
- * @param vDOM
+ * @param {vFragmentNode} vDOM
  */
-const removeFragmentNodes = (vDOM) => {
+const removeFragmentNodes = (vDOM: vFragmentNode) => {
   const { children } = vDOM;
   children.forEach(destroyDOM);
 };
