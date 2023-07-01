@@ -1,30 +1,30 @@
 export function setAttributes(el, attrs) {
-  const { class: className, style, ...otherAttrs } = attrs; //--1--
+  const { class: className, style, ...otherAttrs } = attrs;
 
   if (className) {
-    setClass(el, className); //--2--
+    setClass(el, className);
   }
 
   if (style) {
     Object.entries(style).forEach(([prop, value]) => {
-      setStyle(el, prop, value); //--3--
+      setStyle(el, prop, value);
     });
   }
 
   for (const [name, value] of Object.entries(otherAttrs)) {
-    setAttribute(el, name, value); //--4--
+    setAttribute(el, name, value);
   }
 }
 
 function setClass(el, className) {
-  el.className = ""; // --1--
+  el.className = "";
 
   if (typeof className === "string") {
-    el.className = className; // --2--
+    el.className = className;
   }
 
   if (Array.isArray(className)) {
-    el.classList.add(...className); // --3--
+    el.classList.add(...className);
   }
 }
 
