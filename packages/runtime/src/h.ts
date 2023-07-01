@@ -1,26 +1,34 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { DOM_TYPES } from "./consts";
-import {
-  HyperTextChildNodeType,
-  ElementNodeType,
-  HyperTextPropsType,
-  TextNodeType,
-  FragmentNodeType,
-} from "./types";
+import { VNode } from "./types/common";
+import { ElementNodePropsType, vElementNode } from "./types/elementTypes";
+import { vFragmentNode } from "./types/fragmentTypes";
+import { vTextNode } from "./types/textTypes";
 import { withoutNulls } from "./utils/arrays";
 
 /**
- * Defines HTML Element Nodes
- * h() hyperscript method
- * @param tag string, tag of the node
- * @param props HyperTextPropsType, the props of the element
- * @param children HyperTextChildNodeType[], the children nodes
- * @returns HyperTextNodeType, the HTML Element
+ * Hypertext function: creates a virtual node representing an element with
+ * the passed in tag.
+ *
+ * The props are added to the element as attributes.
+ * There are some special props:
+ * - `on`: an object containing event listeners to add to the element
+ * - `class`: a string or array of strings to add to the element's class list
+ * - `style`: an object containing CSS properties to add to the element's style
+ *
+ * The children are added to the element as child nodes.
+ * If a child is a string, it is converted to a text node using `hString()`.
+ *
+ * @param {string} tag the tag name of the element
+ * @param {ElementNodePropsType} props the props to add to the element
+ * @param {VNode[]} children the children to add to the element
+ * @returns {vElementNode} the virtual node
  */
 export const h = (
   tag: string,
-  props: HyperTextPropsType = {},
+  props: ElementNodePropsType = {},
   children: unknown[] = []
-): ElementNodeType => {
+): vElementNode => {
   return {
     type: DOM_TYPES.ELEMENT,
     tag,
@@ -31,35 +39,65 @@ export const h = (
 
 /**
  * Transforms strings into text virtual nodes
- * @param children HyperTextChildNodeType[], list of child nodes
+ * @param {VNode[]} children list of child nodes
  * @returns transformed array of child nodes with text virtual nodes
  */
-export const mapTextNodes = (children: HyperTextChildNodeType[]) => {
+export const mapTextNodes = (children: VNode[]) => {
   return children.map((child) =>
     typeof child === "string" ? hString(child) : child
   );
 };
 
 /**
- * Transforms text to text virtual nodes
- * @param str string, text to transform
- * @returns Text node
+ * Creates a text virtual node.
+ *
+ * @param {string} str the text to add to the text node
+ * @returns {vTextNode} the virtual node
  */
-export const hString = (val: string): TextNodeType => {
+export const hString = (val: string): vTextNode => {
   return { type: DOM_TYPES.TEXT, value: val };
 };
 
 /**
- * Creates fragment virtual nodes
- * @param vNodes
- * @returns
+ * Wraps the virtual nodes in a fragment.
+ *
+ * If a child is a string, it is converted to a text node using `hString()`.
+ *
+ * @param {VNode[]} vNodes the virtual nodes to wrap in a fragment
+ * @returns {vFragmentNode} the virtual node
  */
-export const hFragment = (vNodes): FragmentNodeType => {
+export const hFragment = (vNodes: VNode[]): vFragmentNode => {
   return {
     type: DOM_TYPES.FRAGMENT,
     children: mapTextNodes(withoutNulls(vNodes)),
   };
 };
+
+/**
+ * Extracts the children of a virtual node. If one of the children is a
+ * fragment, its children are extracted and added to the list of children.
+ * In other words, the fragments are replaced by their children.
+ *
+ * @param {vFragmentNode} vDOM
+ * @returns {VNode[]} the children of the virtual node
+ */
+export function extractChildren(vDOM: vFragmentNode): VNode[] {
+  if (vDOM.children == null) {
+    return [];
+  }
+
+  const children: any = [];
+
+  for (const child of vDOM.children) {
+    if (child.type === DOM_TYPES.FRAGMENT) {
+      children.push(...extractChildren(child as vFragmentNode), children);
+    } else {
+      children.push(child);
+    }
+  }
+
+  return children;
+}
 
 /**
  * Takes in a number, and returns a virtual DOM
@@ -88,7 +126,7 @@ type LevelType = "info" | "warning" | "error";
 export const MessageComponent = (
   level: LevelType,
   message: string
-): ElementNodeType => {
+): vElementNode => {
   const cssClass = `message--${level}`;
   return h("div", { class: cssClass }, [message]);
 };
