@@ -20,6 +20,7 @@ export const DOM_TYPES: DomNodeType = {
 
 /**
  * Defines HTML Element Nodes
+ * h() hyperscript method
  * @param tag string, tag of the node
  * @param props HyperTextPropsType, the props of the element
  * @param children HyperTextChildNodeType[], the children nodes
@@ -31,14 +32,21 @@ export const h = (
   children: HyperTextChildNodeType[] = []
 ): HyperTextNodeType => {
   return {
+    type: DOM_TYPES.ELEMENT,
     tag,
     props,
     children: mapTextNodes(withoutNulls(children)),
-    type: DOM_TYPES.ELEMENT,
   };
 };
 
-export const mapTextNodes = (children) => {
+/**
+ * Filters NULL nodes within the children
+ * Used for conditional rendering where we don't want to render empty nodes
+ * NULL nodes shouldn't be added to the DOM
+ * @param children HyperTextChildNodeType[], the child nodes to evaluate
+ * @returns a filtered array of child nodes
+ */
+export const mapTextNodes = (children: HyperTextChildNodeType[]) => {
   return children.map((child) =>
     typeof child === "string" ? hString(child) : child
   );
