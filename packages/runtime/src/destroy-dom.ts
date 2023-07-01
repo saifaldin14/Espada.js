@@ -1,6 +1,11 @@
 import { removeEventListeners } from "./events";
 import { DOM_TYPES } from "./consts";
 
+/**
+ * Destroys the DOM Elements
+ * Handles Text, Fragment and Element nodes and removes them
+ * @param vDOM
+ */
 export const destroyDOM = (vDOM) => {
   const { type } = vDOM;
 
@@ -28,11 +33,20 @@ export const destroyDOM = (vDOM) => {
   delete vDOM.el;
 };
 
+/**
+ * Destroys a Text node
+ * @param vDOM
+ */
 const removeTextNode = (vDOM) => {
   const { el } = vDOM;
   el.remove();
 };
 
+/**
+ * Destroys an HTMLElement node and removes its children
+ * as well as its Event handlers
+ * @param vDOM
+ */
 const removeElementNode = (vDOM) => {
   const { el, children, listeners } = vDOM;
 
@@ -45,6 +59,11 @@ const removeElementNode = (vDOM) => {
   }
 };
 
+/**
+ * Destroys a Fragment
+ * Loops through its children deletes them separately
+ * @param vDOM
+ */
 const removeFragmentNodes = (vDOM) => {
   const { children } = vDOM;
   children.forEach(destroyDOM);
