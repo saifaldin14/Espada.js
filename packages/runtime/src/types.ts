@@ -41,3 +41,5 @@ export type vFragmentNode = {
   children: any;
   el: DocumentFragment;
 };
+
+export type VoidFunctionType = () => void;
