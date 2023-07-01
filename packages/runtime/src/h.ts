@@ -1,5 +1,5 @@
+import { DOM_TYPES } from "./consts";
 import {
-  DomNodeType,
   HyperTextChildNodeType,
   ElementNodeType,
   HyperTextPropsType,
@@ -7,18 +7,6 @@ import {
   FragmentNodeType,
 } from "./types";
 import { withoutNulls } from "./utils/arrays";
-
-/**
- * Defines the Virtual DOM tree node types
- * Text: for empty or value based nodes
- * Element: Most HTML nodes (div, p, button, ul, etc.)
- * Fragment: Empty tags <></> used to house other elements within it
- */
-export const DOM_TYPES: DomNodeType = {
-  TEXT: "text",
-  ELEMENT: "element",
-  FRAGMENT: "fragment",
-};
 
 /**
  * Defines HTML Element Nodes
