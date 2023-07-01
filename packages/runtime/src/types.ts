@@ -7,6 +7,7 @@ export type DomNodeType = {
 export type HyperTextPropsType = {
   type?: string;
   class?: string;
+  action?: string;
 };
 
 export type HyperTextChildPropsType = {
