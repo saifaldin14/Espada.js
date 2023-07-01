@@ -91,3 +91,27 @@ export const lipsum = (num: number) => {
 
   return hFragment(vNodes);
 };
+
+type LevelType = "info" | "warning" | "error";
+
+/**
+ * Return a virtual DOM that represents a message box
+ * with the message and the corresponding CSS class
+ * depending on the level
+ * @param level a string that can be either 'info', 'warning', or 'error'
+ * @param message a string with the message to display
+ * @returns
+ */
+export const MessageComponent = (
+  level: LevelType,
+  message: string
+): ElementNodeType => {
+  const cssClass = `message--${level}`;
+  const textNode = hString(message);
+  return {
+    type: "element",
+    tag: "div",
+    props: { class: cssClass },
+    children: [textNode],
+  };
+};
